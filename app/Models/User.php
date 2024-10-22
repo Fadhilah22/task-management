@@ -55,11 +55,6 @@ class User extends Authenticatable
         return $this->hasMany(Task::class);
     }
 
-    public function getFullNameAttribute(): string
-    {
-        return $this->full_name;
-    }
-
     
     public function verifyPassword($password): string{
         return password_verify($password, $this->password);

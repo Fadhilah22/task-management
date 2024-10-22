@@ -52,4 +52,8 @@ class UserController extends Controller
             'full_name' => 'required|string|max:255',
         ]);
     }
+
+    public function getUser(Request $request, int $id) : User {
+        return User::findOrFail($id); 
+    }
 }

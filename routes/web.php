@@ -6,8 +6,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('page.main');
 })->name('base');
+
+// main page
+Route::get('/main', function (){
+    return view('main.main');
+})->name('page.main');
 
 // register
 Route::get('/register', function () {
