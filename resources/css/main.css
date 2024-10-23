@@ -1,7 +1,29 @@
 .text-center{
-    margin-right: 100 px;
+    margin-right: 100px;
 }
 
-#btnRegister{
-    margin-right: 5 px;
+.navbar.user{
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar {
+    padding: 1rem; /* Optional padding for better visual presentation */
+}
+
+.title-container {
+    flex-grow: 1;
+}
+
+.buttons-container {
+    display: flex;
+    gap: 10px; /* Optional spacing between buttons */
+}
+
+#btnProfile{
+    width: 60px;
+    height: 60px;
+    background-color: grey;
+    border-color: grey;
+    border-radius: 100px;
 }

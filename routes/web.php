@@ -1,9 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return redirect()->route('page.main');
@@ -25,6 +27,10 @@ Route::get('/login', function () {
     return view('authentication.login');
 });
 Route::post('/login/user', [LoginController::class,'login'])->name('user.login');
+
+// PROFILE
+Route::get('/profile/{user_id}', [ProfileController::class, 'show']);
+
 
 // user routes
 Route::get('/index', [UserController::class, 'index'])->name('user.index');

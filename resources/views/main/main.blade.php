@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Laravel Project</title>
+    @yield('title', 'masterpage')
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     @vite(['resources/css/main.css', 'resources/js/main.js']) 
@@ -17,6 +18,7 @@
 use App\Models\User;
 
 $user = null;
+$page = 'main';
 
 if(session()->has('user_id')){
   if($user == null){
@@ -26,10 +28,10 @@ if(session()->has('user_id')){
 ?>
 
     <div class="container-fluid">
-      <div class="row">
+      <div class="row 1">
         
         <div class="col-md-2">
-          <div class="navbar project">
+          <div class="navbar head">
               <h3>have logo here</h3>
               @if ($user == null)
               <p> you have not logged in </p>
@@ -38,22 +40,62 @@ if(session()->has('user_id')){
               @endif
           </div>
         </div>
-
+      
         <div class="col-md-10">
+          
           <div class="navbar user d-flex justify-content-center align-items-center">
-              <h1 class="text-center mx-5">Project Management App</h1>
+
+              <div class="title-container"> 
+                <h1 class="text-center mx-5">Project Management App</h1>
+              </div>
+
               @if ($user == null)
-              <button class="btn btn-primary mx-2" id="btnRegister">Register</button>
-              <button class="btn btn-primary mx-2" id="btnLogin">Login</button>
-              @else
-              <button class="profile-button" id="btnProfile"></button>
+              <div class="buttons-container d-flex align-items-center">
+                <button class="btn btn-primary mx-2" id="btnRegister">Register</button>
+                <button class="btn btn-primary mx-2" id="btnLogin">Login</button>
+                @else
+                @yield('btnProfile')
+                <button class="btn btn-primary mx-2" id="btnProfile" value="{{ $user->id }}"></button>
               @endif
+              </div>
+
           </div>
         </div>
         
       </div>
+      
+      <div class="row 2">
+          
+          <div class="col-md-2">
+            <div class="navbar project">
+                lists of projects functionality here  
+            </div>
+          </div>
+
+          <div class="col-md-10">
+            <div class="block content">
+                main content here
+                @yield('content')
+            </div>
+          </div>
+
+      </div>
     </div>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    @if ($user != null)
+    <script>
+        window.appConfig = {
+          userId: @json($user->id),
+          page: @json($page ?? 'main')
+        };
+    </script>
+    @else
+    <script>
+        window.appConfig = null;
+    </script>
+    @endif 
+
 </body>
 </html>
