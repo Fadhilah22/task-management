@@ -7,14 +7,18 @@
     <title>My Laravel Project</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    @vite(['']) 
-    
+    @vite(['resources/js/profile.js'])
+
 </head>
 
 <body>
 
 <?php
+    use App\Models\User;
+
     $page = 'profile';
+    $user = User::find(session('user_id'));
+
 ?>
 
 @extends('main.main')
@@ -22,9 +26,19 @@
 @section('title', 'profile')
 @section('btnProfile')
 @section('content')
-    <h2>This is the Child Page Content</h2>
-    <p>This content will be displayed in the main content area of the master layout.</p>
+    <h1>{{ $user->full_name }}</h1>
+    <h3>{{ $user->username }}</h3>
+    <h3>{{ $user->email }}</h3>
+    <button type="" class= "btn btn-primary" id="btnEditProfile">edit profile</button>
 @endsection
+
+<script>
+    window.appConfig = {
+        userId: @json($user->id)
+    };
+</<script>
+
+</script>
 
 </body>
 </html>

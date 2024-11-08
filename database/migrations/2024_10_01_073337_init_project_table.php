@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedInteger('priority')->default(0);
             $table->date('start_date')->default(DB::raw('CURRENT_DATE'))->nullable();
             $table->date('end_date')->nullable();
-            $table->timestamp('create_at')->default(DB::raw('CURRENT_TIMESTAMP'))->nullable();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'))->nullable();
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'))->nullable();
             $table->foreignId('created_by')->constrained()->references('id')->on('users')->onDelete('cascade');
 

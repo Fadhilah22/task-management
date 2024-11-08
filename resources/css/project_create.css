@@ -1,0 +1,32 @@
+
+form label{
+    margin-bottom: 2%;
+}
+
+form label input{
+    width: 200%;
+}
+
+form label textarea{
+    width: 200%;
+}
+
+.row#statusRow{
+    width: 500px;
+}
+.row#statusRow p{
+    margin-bottom: 0;
+}
+.row#statusRow button{
+    width: 100%;
+}
+
+.row#priorityRow{
+    width: 500px;
+}
+.row#priorityRow p{
+    margin-bottom: 0;
+}
+.row#priorityRow button{
+    width: 120%;
+}

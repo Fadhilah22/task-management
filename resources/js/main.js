@@ -27,11 +27,13 @@ function load_script_guess(){
 
 function load_script_user(){
   console.log(page);
-  if(page === 'main'){
+  if(window.location.pathname === '/main'){
     const btnProfile = document.getElementById('btnProfile');
     btnProfile.addEventListener('click', redirect_profile);
     const user_id = btnProfile.value;
   }
+    const btnCreateProject = document.getElementById('btnCreateProject');
+    btnCreateProject.addEventListener('click', create_project);
 }
 
 function redirect_register(){
@@ -39,10 +41,14 @@ function redirect_register(){
 }
 
 function redirect_login(){
-    window.location.href = "login"; 
+    window.location.href = "login";
 }
 
 function redirect_profile(){
     console.log("profile/" + user_id);
     window.location.href = "profile/" + user_id;
+}
+
+function create_project(){
+    window.location.href = "project/create";
 }

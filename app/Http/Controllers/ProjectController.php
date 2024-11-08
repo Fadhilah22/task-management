@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use App\Models\Project;
 
 class ProjectController extends Controller
 {
-    //
     public function index(){
         $projects = Project::all();
 
@@ -20,18 +20,26 @@ class ProjectController extends Controller
 
     public function store(Request $request){
         //  id | title | description | status | priority | start_date | end_date | create_at | updated_at | created_by
+        info('project.store called');
+        try{
+            $projectData = $request->validate([
+                "title" => "required|string|max:255|",
+                "description" => "string",
+                "status" => "string|max:30",
+                "priority" => "integer",
+                "start_date" => "date",
+                "end_date" =>"date",
+                "created_by" => "string"
+            ]);
 
-        $projectData = $this->$request->validate([
-            "title" => "required|string|max:255|",
-            "description"=> "string",
-            "status"=> "integer",
-            "start_date"=> "date",
-            "end_date"=>"date",
-        ]);
+            $this->debugProjectInput($projectData);
 
-        Project::create($projectData);
+            Project::create($projectData);
 
-        return view('project.store', compact('project'));
+        } catch(ValidationException $e){
+            info($e->getMessage());
+        }
+        return redirect('/')->with("success", "project ". $projectData["title"] . " created!");
     }
 
     public function show(Project $project){
@@ -46,9 +54,25 @@ class ProjectController extends Controller
         $validatedData = $request->validate([
             'title' => 'string|max:255',
             'description'=> 'string',
-            'status'=> 'integer',
+            'status'=>'string|max:30' ,
             'start_date'=> 'date',
             'end_date'=> 'date',
         ]);
+    }
+
+    public function showCreate(){
+        return view('project.create');
+    }
+
+    private function debugProjectInput($projectData){
+        info("LOG ProjectController : "
+            . $projectData['title'] . " "
+            . $projectData['description']. " "
+            . $projectData['status'] . " "
+            . $projectData['priority'] . " "
+            . $projectData['start_date'] . " "
+            . $projectData['end_date'] . " "
+            . $projectData['created_by']
+        );
     }
 }
