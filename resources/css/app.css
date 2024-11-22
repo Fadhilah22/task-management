@@ -1,0 +1,12 @@
+@import url('https://fonts.cdnfonts.com/css/helvetica-neue-55');
+
+:root{
+    --main-font: "Helvetica Neue", sans-serif;
+    --charcoal: rgb(50, 50, 50);
+}
+
+*{
+    font-family: var(--main-font);
+}
+
+

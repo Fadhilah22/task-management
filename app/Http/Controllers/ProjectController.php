@@ -39,7 +39,7 @@ class ProjectController extends Controller
         } catch(ValidationException $e){
             info($e->getMessage());
         }
-        return redirect('/')->with("success", "project ". $projectData["title"] . " created!");
+        return redirect()->back()->with("success", "project ". $projectData["title"] . " created!");
     }
 
     public function show(Project $project){

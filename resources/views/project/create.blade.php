@@ -13,12 +13,23 @@
 
 <body>
 
+<?php
+    $message = null;
+    if(session()->has('success')){
+        $message = session('success');
+    }
+?>
 
 @extends('main.main')
 
 @section('title', 'create project')
 @section('btnProfile')
 @section('content')
+@if($message != null)
+    <div class= "message success-message">
+        <p>{{$message}}</p>
+    </div>
+@endif
 <form action="{{ route('project.store') }}" method="post">
     @csrf
     <label for="title">
@@ -63,7 +74,7 @@
             </div>
 
             <div class="col-md-2 ms-2">
-                <p>high</p>
+                <p>critical</p>
                 <button type="button" class="opt" id="optCritical">critical</button>
             </div>
 

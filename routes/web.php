@@ -14,7 +14,7 @@ Route::get('/', function () {
 
 // main page
 Route::get('/main', function (){
-    return view('main.main');
+    return view('project.list');
 })->name('page.main');
 
 // register
@@ -30,11 +30,11 @@ Route::get('/login', function () {
 Route::post('/login/user', [LoginController::class,'login'])->name('user.login');
 
 // profile
-Route::get('/profile/{user_id}', [ProfileController::class, 'show']);
+Route::get('/profile/{user_id}', [ProfileController::class, 'show'])->name('profile.show');
 Route::get('/profile/{user_id}/edit', [ProfileController::class, 'showEdit']);
 
 // project
-Route::get('/project/create', [ProjectController::class, 'showCreate']);
+Route::get('/project/create', [ProjectController::class, 'showCreate'])->name('project.create');
 Route::post('/project/store', [ProjectController::class, 'store'])->name('project.store');
 
 

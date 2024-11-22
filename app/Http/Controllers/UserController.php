@@ -30,7 +30,7 @@ class UserController extends Controller
             'password_hash'=> 'required|string',
             'full_name' => 'required|string|max:255',
         ]);
-        
+
         User::create($validatedData);
 
         return redirect()->route('user.index');
@@ -53,7 +53,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function getUser(Request $request, int $id) : User {
-        return User::findOrFail($id); 
+    public function getUser(int $id) : User {
+        return User::findOrFail($id);
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Project;
+
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,7 +13,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
-    
+
     // id | username | email | password_hash | full_name | created_at | updated_at
     /**
      * The attributes that are mass assignable.
@@ -50,12 +52,11 @@ class User extends Authenticatable
         ];
     }
 
-    public function tasks()
+    public function projects()
     {
-        return $this->hasMany(Task::class);
+        return $this->hasMany(Project::class, 'created_by');
     }
 
-    
     public function verifyPassword($password): string{
         return password_verify($password, $this->password);
     }

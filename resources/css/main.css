@@ -1,14 +1,38 @@
+html{
+    background-color: var(--charcoal);
+}
+
+body{
+    margin: 30px;
+    padding: 10px;
+    height:1080px;
+}
+
 .text-center{
     margin-right: 100px;
+    color:white;
 }
 
 .navbar.user{
     display: flex;
     justify-content: space-between;
+    background-color: var(--charcoal);
 }
 
-.navbar {
-    padding: 1rem; /* Optional padding for better visual presentation */
+.navbar.head{
+    border: 5px solid;
+    border-color: var(--charcoal);
+}
+
+.logo h2{
+    width: 100%;
+    text-align: center;
+}
+
+.navbar.head:hover{
+    cursor: pointer;
+    background-color: lightgray;
+    transition-duration: 0.5s;
 }
 
 #btnCreateProject{
@@ -24,7 +48,7 @@
     gap: 10px; /* Optional spacing between buttons */
 }
 
-#btnProfile{
+#btnProfile {
     width: 60px;
     height: 60px;
     background-color: grey;
@@ -32,4 +56,34 @@
     border-radius: 100px;
 }
 
+.sidebar.container{
+    padding: 20px 0 0 10px;
+}
 
+.sidebar.project-section {
+    padding: 20px 0 10px 0;
+}
+
+.sidebar.project-section.header{
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 0;
+}
+
+.sidebar.project-section.header:hover{
+    cursor: pointer;
+}
+
+.sidebar.project-section.project-container{
+    padding-top: 0;
+}
+
+.sidebar.project-section.project{
+    padding-top: 0;
+    border: 1px solid;
+    text-align: center;
+}
+
+.block.content{
+    margin: 20px 0 0 10px;
+}
